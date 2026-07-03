@@ -21,7 +21,7 @@ public class Library {
         boolean bookFounded = false;
         for (Book bok : this.books) {
             if (bok.getIsbn().equals(isbn)) {
-                if (bok.isAvailable()) {
+                if (!bok.isAvailable()) {
                     bookFounded = bok.getIsbn().equals(isbn);
                     book = bok;
                     for (Member mmbr : this.members) {
@@ -31,18 +31,22 @@ public class Library {
                             List<Book> memberBorrowedBooks = member.getborrowedBooks();
                             for (Book mmbrBook: memberBorrowedBooks) {
                                 if (mmbrBook.getIsbn().equals(isbn)) {
-                                    System.out.println("Member With Id " + memberId + " " + "Already Have Book With Isbn: " + isbn);
+                                    member.returnBook(book);
+                                    bok.setAvailable(true);
+                                    System.out.println("The Book With Isbn : " + isbn + " Returned");
                                     return;
                                 }
-                                member.returnBook(book);
-                                bok.setAvailable(true);
                             }
+                            System.out.println("The Book Doesnt Borrowed For This User !");
                         }
                     }
                     if (!mmbrFounded) {
                         System.out.println("Member Does Not Exists !");
                         return;
                     }
+                } else {
+                    System.out.println("The Book Is Available And Not Borrowed By Any User");
+                    return;
                 }
             }
         }
