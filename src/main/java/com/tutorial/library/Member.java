@@ -5,12 +5,12 @@ import java.util.List;
 public class Member {
     private final String memberId;
     private final String name;
-    private List<Book> bookList;
+    private List<Book> borrowedBooks;
 
-    public Member(String memberId, String name, List<Book> bookList) {
+    public Member(String memberId, String name, List<Book> borrowedBooks) {
         this.memberId = memberId;
         this.name = name;
-        this.bookList = bookList;
+        this.borrowedBooks = borrowedBooks;
     }
 
     public String getMemberId() {
@@ -21,10 +21,10 @@ public class Member {
         return name;
     }
 
-    public List<Book> getBookList() {
-        return bookList;
+    public List<Book> getborrowedBooks() {
+        return borrowedBooks;
     }
 
-    public void borrowBook() {}
-    public void returnBook() {}
+    public void borrowBook(Book book) {}
+    public void returnBook(Book book) {}
 }
