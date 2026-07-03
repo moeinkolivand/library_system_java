@@ -25,6 +25,10 @@ public class Member {
         return borrowedBooks;
     }
 
-    public void borrowBook(Book book) {}
-    public void returnBook(Book book) {}
+    public void borrowBook(Book book) {
+        this.borrowedBooks.add(book);
+    }
+    public void returnBook(Book book) {
+        this.borrowedBooks.remove(book);
+    }
 }
