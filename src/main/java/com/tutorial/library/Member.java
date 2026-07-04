@@ -29,7 +29,7 @@ public class Member {
     }
 
     public List<Book> getBorrowedBooks() {
-        return borrowedBooks;
+        return new ArrayList<>(borrowedBooks);
     }
 
     public void borrowBook(Book book) {
