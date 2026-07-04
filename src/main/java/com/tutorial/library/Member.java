@@ -1,5 +1,6 @@
 package com.tutorial.library;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Member {
@@ -11,6 +12,12 @@ public class Member {
         this.memberId = memberId;
         this.name = name;
         this.borrowedBooks = borrowedBooks;
+    }
+
+    public Member(String memberId, String name) {
+        this.memberId = memberId;
+        this.name = name;
+        this.borrowedBooks = new ArrayList<Book>();
     }
 
     public String getMemberId() {
