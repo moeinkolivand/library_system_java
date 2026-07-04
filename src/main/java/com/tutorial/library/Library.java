@@ -48,21 +48,17 @@ public class Library {
                                     return;
                                 }
                             }
-                            System.out.println("The Book Doesnt Borrowed For This User !");
+                            throw new BookNotBorrowedByThisUser("Book Not Borrowed By This User !");
                         }
                     }
-                    if (!mmbrFounded) {
-                        throw new MemberDoesNotExists("Member Does Not Exists");
-                    }
+                    throw new MemberDoesNotExists("Member Does Not Exists");
                 } else {
                     System.out.println("The Book Is Available And Not Borrowed By Any User");
                     return;
                 }
             }
         }
-        if (!bookFounded) {
-            throw new BookDoesNotExists("Book Does Not Exists");
-        }
+        throw new BookDoesNotExists("Book Does Not Exists");
     }
 
     public void borrowBook(String isbn, String memberId) {
