@@ -35,7 +35,7 @@ public class Library {
                     for (Member mmbr : this.members) {
                         if (mmbr.getMemberId().equals(memberId)) {
                             member = mmbr;
-                            List<Book> memberBorrowedBooks = member.getborrowedBooks();
+                            List<Book> memberBorrowedBooks = member.getBorrowedBooks();
                             for (Book mmbrBook: memberBorrowedBooks) {
                                 if (mmbrBook.getIsbn().equals(isbn)) {
                                     member.returnBook(book);
@@ -67,7 +67,7 @@ public class Library {
                     for (Member mmbr : this.members) {
                         if (mmbr.getMemberId().equals(memberId)) {
                             member = mmbr;
-                            List<Book> memberBorrowedBooks = member.getborrowedBooks();
+                            List<Book> memberBorrowedBooks = member.getBorrowedBooks();
                             if (memberBorrowedBooks.size() >= 3) {
                                 throw new MaximumBorrowedBookException("Member Already Borrowed Three Book");
                             }

@@ -28,7 +28,7 @@ public class Member {
         return name;
     }
 
-    public List<Book> getborrowedBooks() {
+    public List<Book> getBorrowedBooks() {
         return borrowedBooks;
     }
 

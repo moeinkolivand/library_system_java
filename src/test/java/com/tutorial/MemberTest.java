@@ -26,11 +26,11 @@ public class MemberTest {
     @DisplayName("Borrow Book Test")
     public void borrowBookTest() {
         memberOne.borrowBook(bookOne);
-        assertEquals(memberOne.getborrowedBooks().size(), 1);
-        assertEquals(memberTwo.getborrowedBooks().size(), 0);
+        assertEquals(memberOne.getBorrowedBooks().size(), 1);
+        assertEquals(memberTwo.getBorrowedBooks().size(), 0);
         memberTwo.borrowBook(bookTwo);
-        assertEquals(memberOne.getborrowedBooks().size(), 1);
-        assertEquals(memberTwo.getborrowedBooks().size(), 1);
+        assertEquals(memberOne.getBorrowedBooks().size(), 1);
+        assertEquals(memberTwo.getBorrowedBooks().size(), 1);
     }
 
 
@@ -38,10 +38,10 @@ public class MemberTest {
     @DisplayName("Return Book Test")
     public void returnBookTest() {
         memberOne.borrowBook(bookOne);
-        assertEquals(memberOne.getborrowedBooks().size(), 1);
-        assertEquals(memberTwo.getborrowedBooks().size(), 0);
+        assertEquals(memberOne.getBorrowedBooks().size(), 1);
+        assertEquals(memberTwo.getBorrowedBooks().size(), 0);
         memberOne.returnBook(bookOne);
-        assertEquals(memberOne.getborrowedBooks().size(), 0);
-        assertEquals(memberTwo.getborrowedBooks().size(), 0);
+        assertEquals(memberOne.getBorrowedBooks().size(), 0);
+        assertEquals(memberTwo.getBorrowedBooks().size(), 0);
     }
 }
