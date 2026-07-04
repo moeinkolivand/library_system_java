@@ -2,7 +2,6 @@ package com.tutorial.library;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class Library {
     private List<Book> books;
@@ -69,10 +68,10 @@ public class Library {
     }
 
     private Book findBookByIsbn(String isbn) {
-        return books.stream().filter(book -> book.getIsbn().equals(isbn)).findFirst().orElseThrow(() -> new BookDoesNotExistsException("Book With Isbn " + isbn + "Not Founded"));
+        return books.stream().filter(book -> book.getIsbn().equals(isbn)).findFirst().orElseThrow(() -> new BookNotFoundException("Book With Isbn " + isbn + "Not Founded"));
     }
 
     private Member findMemberById(String id) {
-        return members.stream().filter(member -> member.getMemberId().equals(id)).findFirst().orElseThrow(() -> new MemberDoesNotExistsException("Member With Id " + id + "Does Not Exists"));
+        return members.stream().filter(member -> member.getMemberId().equals(id)).findFirst().orElseThrow(() -> new MemberNotFoundException("Member With Id " + id + "Does Not Exists"));
     }
 }

@@ -68,7 +68,7 @@ public class LibraryTest {
     @Test
     @DisplayName("Borrow Book For Not ExistedUser")
     public void borrowBookForNotExistedUser() {
-        assertThrowsExactly(MemberDoesNotExistsException.class, () -> library.borrowBook("1", "999999999999"));
+        assertThrowsExactly(MemberNotFoundException.class, () -> library.borrowBook("1", "999999999999"));
     }
 
     @Test
@@ -81,12 +81,12 @@ public class LibraryTest {
     @Test
     @DisplayName("Borrow Book Doesnt Exists")
     public void borrowBookDoesntExists() {
-        assertThrowsExactly(BookDoesNotExistsException.class, () -> library.borrowBook("132321231132321321", memberOneId));
+        assertThrowsExactly(BookNotFoundException.class, () -> library.borrowBook("132321231132321321", memberOneId));
     }
 
     @Test
     @DisplayName("Return Book Doesnt Exists")
     public void returnBookDoesntExists() {
-        assertThrowsExactly(BookDoesNotExistsException.class, () -> library.returnBook("132321231132321321", memberOneId));
+        assertThrowsExactly(BookNotFoundException.class, () -> library.returnBook("132321231132321321", memberOneId));
     }
 }
