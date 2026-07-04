@@ -28,17 +28,13 @@ public class Library {
     public void returnBook(String isbn, String memberId) {
         Book book;
         Member member;
-        boolean mmbrFounded = false;
-        boolean bookFounded = false;
         for (Book bok : this.books) {
             if (bok.getIsbn().equals(isbn)) {
                 if (!bok.isAvailable()) {
-                    bookFounded = bok.getIsbn().equals(isbn);
                     book = bok;
                     for (Member mmbr : this.members) {
                         if (mmbr.getMemberId().equals(memberId)) {
                             member = mmbr;
-                            mmbrFounded = true;
                             List<Book> memberBorrowedBooks = member.getborrowedBooks();
                             for (Book mmbrBook: memberBorrowedBooks) {
                                 if (mmbrBook.getIsbn().equals(isbn)) {
@@ -64,17 +60,13 @@ public class Library {
     public void borrowBook(String isbn, String memberId) {
         Book book;
         Member member;
-        boolean mmbrFounded = false;
-        boolean bookFounded = false;
         for (Book bok : this.books) {
             if (bok.getIsbn().equals(isbn)) {
                 if (bok.isAvailable()) {
-                    bookFounded = bok.getIsbn().equals(isbn);
                     book = bok;
                     for (Member mmbr : this.members) {
                         if (mmbr.getMemberId().equals(memberId)) {
                             member = mmbr;
-                            mmbrFounded = true;
                             List<Book> memberBorrowedBooks = member.getborrowedBooks();
                             if (memberBorrowedBooks.size() >= 3) {
                                 throw new MaximumBorrowedBookException("Member Already Borrowed Three Book");
@@ -87,19 +79,17 @@ public class Library {
                             }
                             member.borrowBook(book);
                             bok.setAvailable(false);
+                            System.out.println("Book With Isbn " + isbn + "Borrowed For Member With Id " + memberId);
+                            return;
                         }
                     }
-                    if (!mmbrFounded) {
-                        throw new MemberDoesNotExistsException("Member Does Not Exists");
-                    }
+                    throw new MemberDoesNotExistsException("Member Does Not Exists");
                 } else {
                     throw new BookNotAvailableException("Book Is Not Available");
                 }
             }
         }
-        if (!bookFounded) {
-            throw new BookDoesNotExistsException("Book Does Not Exists");
-        }
+        throw new BookDoesNotExistsException("Book Does Not Exists");
     }
     public void registerMember(Member member) {
         for (Member mmbr: this.members) {
