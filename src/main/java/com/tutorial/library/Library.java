@@ -52,8 +52,7 @@ public class Library {
                         }
                     }
                     if (!mmbrFounded) {
-                        System.out.println("Member Does Not Exists !");
-                        return;
+                        throw new MemberDoesNotExists("Member Does Not Exists");
                     }
                 } else {
                     System.out.println("The Book Is Available And Not Borrowed By Any User");
@@ -62,7 +61,7 @@ public class Library {
             }
         }
         if (!bookFounded) {
-            System.out.println("Book Does Not Exists !");
+            throw new BookDoesNotExists("Book Does Not Exists");
         }
     }
 
@@ -82,7 +81,7 @@ public class Library {
                             mmbrFounded = true;
                             List<Book> memberBorrowedBooks = member.getborrowedBooks();
                             if (memberBorrowedBooks.size() >= 3) {
-                                System.out.println("Member Already Have 3 Books");
+                                throw new MaximumBorrowedBook("Member Already Borrowed Three Book");
                             }
                             for (Book mmbrBook: memberBorrowedBooks) {
                                 if (mmbrBook.getIsbn().equals(isbn)) {
@@ -95,14 +94,15 @@ public class Library {
                         }
                     }
                     if (!mmbrFounded) {
-                        System.out.println("Member Does Not Exists !");
-                        return;
+                        throw new MemberDoesNotExists("Member Does Not Exists");
                     }
+                } else {
+                    throw new BookNotAvailable("Book Is Not Available");
                 }
             }
         }
         if (!bookFounded) {
-            System.out.println("Book Does Not Exists !");
+            throw new BookDoesNotExists("Book Does Not Exists");
         }
     }
     public void registerMember(Member member) {
