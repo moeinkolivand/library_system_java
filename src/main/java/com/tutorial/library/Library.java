@@ -48,17 +48,17 @@ public class Library {
                                     return;
                                 }
                             }
-                            throw new BookNotBorrowedByThisUser("Book Not Borrowed By This User !");
+                            throw new BookNotBorrowedByThisUserException("Book Not Borrowed By This User !");
                         }
                     }
-                    throw new MemberDoesNotExists("Member Does Not Exists");
+                    throw new MemberDoesNotExistsException("Member Does Not Exists");
                 } else {
                     System.out.println("The Book Is Available And Not Borrowed By Any User");
                     return;
                 }
             }
         }
-        throw new BookDoesNotExists("Book Does Not Exists");
+        throw new BookDoesNotExistsException("Book Does Not Exists");
     }
 
     public void borrowBook(String isbn, String memberId) {
@@ -77,7 +77,7 @@ public class Library {
                             mmbrFounded = true;
                             List<Book> memberBorrowedBooks = member.getborrowedBooks();
                             if (memberBorrowedBooks.size() >= 3) {
-                                throw new MaximumBorrowedBook("Member Already Borrowed Three Book");
+                                throw new MaximumBorrowedBookException("Member Already Borrowed Three Book");
                             }
                             for (Book mmbrBook: memberBorrowedBooks) {
                                 if (mmbrBook.getIsbn().equals(isbn)) {
@@ -90,15 +90,15 @@ public class Library {
                         }
                     }
                     if (!mmbrFounded) {
-                        throw new MemberDoesNotExists("Member Does Not Exists");
+                        throw new MemberDoesNotExistsException("Member Does Not Exists");
                     }
                 } else {
-                    throw new BookNotAvailable("Book Is Not Available");
+                    throw new BookNotAvailableException("Book Is Not Available");
                 }
             }
         }
         if (!bookFounded) {
-            throw new BookDoesNotExists("Book Does Not Exists");
+            throw new BookDoesNotExistsException("Book Does Not Exists");
         }
     }
     public void registerMember(Member member) {

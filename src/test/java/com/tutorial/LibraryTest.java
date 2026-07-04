@@ -53,7 +53,7 @@ public class LibraryTest {
     @DisplayName("Borrow Book When Its Not Available")
     public void borrowBookWhenItIsNotAvailable() {
         bookOne.setAvailable(false);
-        assertThrowsExactly(BookNotAvailable.class, () -> library.borrowBook(bookOneIsbn, memberOneId));
+        assertThrowsExactly(BookNotAvailableException.class, () -> library.borrowBook(bookOneIsbn, memberOneId));
     }
 
     @Test
@@ -62,31 +62,31 @@ public class LibraryTest {
         library.borrowBook(bookOneIsbn, memberOneId);
         library.borrowBook(bookTwoIsbn, memberOneId);
         library.borrowBook("3", memberOneId);
-        assertThrowsExactly(MaximumBorrowedBook.class, () -> library.borrowBook("4", memberOneId));
+        assertThrowsExactly(MaximumBorrowedBookException.class, () -> library.borrowBook("4", memberOneId));
     }
 
     @Test
     @DisplayName("Borrow Book For Not ExistedUser")
     public void borrowBookForNotExistedUser() {
-        assertThrowsExactly(MemberDoesNotExists.class, () -> library.borrowBook("1", "999999999999"));
+        assertThrowsExactly(MemberDoesNotExistsException.class, () -> library.borrowBook("1", "999999999999"));
     }
 
     @Test
     @DisplayName("Return Book That Doesnt Belong To Current User")
     public void returnBookDoesntBelongToCurrentUser() {
         library.borrowBook(bookOneIsbn, memberOneId);
-        assertThrowsExactly(BookNotBorrowedByThisUser.class, () -> library.returnBook(bookOneIsbn, memberTwoId));
+        assertThrowsExactly(BookNotBorrowedByThisUserException.class, () -> library.returnBook(bookOneIsbn, memberTwoId));
     }
 
     @Test
     @DisplayName("Borrow Book Doesnt Exists")
     public void borrowBookDoesntExists() {
-        assertThrowsExactly(BookDoesNotExists.class, () -> library.borrowBook("132321231132321321", memberOneId));
+        assertThrowsExactly(BookDoesNotExistsException.class, () -> library.borrowBook("132321231132321321", memberOneId));
     }
 
     @Test
     @DisplayName("Return Book Doesnt Exists")
     public void returnBookDoesntExists() {
-        assertThrowsExactly(BookDoesNotExists.class, () -> library.returnBook("132321231132321321", memberOneId));
+        assertThrowsExactly(BookDoesNotExistsException.class, () -> library.returnBook("132321231132321321", memberOneId));
     }
 }
